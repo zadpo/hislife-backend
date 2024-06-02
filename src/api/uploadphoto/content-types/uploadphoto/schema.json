@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "uploadphotos",
+  "info": {
+    "singularName": "uploadphoto",
+    "pluralName": "uploadphotos",
+    "displayName": "uploadphoto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photoTitle": {
+      "type": "string"
+    },
+    "photoMessage": {
+      "type": "text"
+    },
+    "photoCover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
