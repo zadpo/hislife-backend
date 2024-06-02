@@ -727,7 +727,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     lastName: Attribute.String;
     bio: Attribute.Text;
     credits: Attribute.Integer & Attribute.DefaultTo<0>;
-    image: Attribute.Media;
+    image: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -906,7 +906,7 @@ export interface ApiJobJob extends Schema.CollectionType {
   };
   attributes: {
     position: Attribute.String;
-    cover: Attribute.Media;
+    cover: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     company: Attribute.String;
     date: Attribute.Date;
     createdAt: Attribute.DateTime;
@@ -933,7 +933,7 @@ export interface ApiPhotogalleryPhotogallery extends Schema.CollectionType {
   attributes: {
     photoTitle: Attribute.String;
     photoMessage: Attribute.Text;
-    photoCover: Attribute.Media;
+    photoCover: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     photoDate: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -999,7 +999,7 @@ export interface ApiUploadphotoUploadphoto extends Schema.CollectionType {
   attributes: {
     photoTitle: Attribute.String;
     photoMessage: Attribute.Text;
-    photoCover: Attribute.Media;
+    photoCover: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
