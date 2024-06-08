@@ -924,6 +924,41 @@ export interface ApiJobJob extends Schema.CollectionType {
   };
 }
 
+export interface ApiMessageMessage extends Schema.CollectionType {
+  collectionName: 'messages';
+  info: {
+    singularName: 'message';
+    pluralName: 'messages';
+    displayName: 'message';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    email: Attribute.String;
+    name: Attribute.String;
+    leader: Attribute.String;
+    tribe: Attribute.String;
+    message: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::message.message',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::message.message',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPhotogalleryPhotogallery extends Schema.CollectionType {
   collectionName: 'photogalleries';
   info: {
@@ -1082,6 +1117,7 @@ declare module '@strapi/types' {
       'api::global.global': ApiGlobalGlobal;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::job.job': ApiJobJob;
+      'api::message.message': ApiMessageMessage;
       'api::photogallery.photogallery': ApiPhotogalleryPhotogallery;
       'api::sign-up.sign-up': ApiSignUpSignUp;
       'api::summary.summary': ApiSummarySummary;
