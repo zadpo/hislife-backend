@@ -803,6 +803,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
     singularName: 'event';
     pluralName: 'events';
     displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -812,6 +813,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
     name: Attribute.Text;
     date: Attribute.Date;
     description: Attribute.Text;
+    gender: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -941,6 +943,10 @@ export interface ApiMessageMessage extends Schema.CollectionType {
     leader: Attribute.String;
     tribe: Attribute.String;
     message: Attribute.Text;
+    number: Attribute.BigInteger;
+    date_of_birth: Attribute.Date;
+    profile_picture: Attribute.Media<'images'> & Attribute.Required;
+    gender: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -952,6 +958,38 @@ export interface ApiMessageMessage extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::message.message',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOfferingOffering extends Schema.CollectionType {
+  collectionName: 'offerings';
+  info: {
+    singularName: 'offering';
+    pluralName: 'offerings';
+    displayName: 'Offering';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    value: Attribute.Integer;
+    date: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::offering.offering',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::offering.offering',
       'oneToOne',
       'admin::user'
     > &
@@ -1063,6 +1101,73 @@ export interface ApiSummarySummary extends Schema.CollectionType {
   };
 }
 
+export interface ApiTitheTithe extends Schema.CollectionType {
+  collectionName: 'tithes';
+  info: {
+    singularName: 'tithe';
+    pluralName: 'tithes';
+    displayName: 'Tithe';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    value: Attribute.Integer;
+    date: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tithe.tithe',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tithe.tithe',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTithesAndOfferingTithesAndOffering
+  extends Schema.CollectionType {
+  collectionName: 'tithes_and_offerings';
+  info: {
+    singularName: 'tithes-and-offering';
+    pluralName: 'tithes-and-offerings';
+    displayName: 'Tithes and Offering';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    value: Attribute.Integer;
+    date: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tithes-and-offering.tithes-and-offering',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tithes-and-offering.tithes-and-offering',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiUploadphotoUploadphoto extends Schema.CollectionType {
   collectionName: 'uploadphotos';
   info: {
@@ -1118,9 +1223,12 @@ declare module '@strapi/types' {
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::job.job': ApiJobJob;
       'api::message.message': ApiMessageMessage;
+      'api::offering.offering': ApiOfferingOffering;
       'api::photogallery.photogallery': ApiPhotogalleryPhotogallery;
       'api::sign-up.sign-up': ApiSignUpSignUp;
       'api::summary.summary': ApiSummarySummary;
+      'api::tithe.tithe': ApiTitheTithe;
+      'api::tithes-and-offering.tithes-and-offering': ApiTithesAndOfferingTithesAndOffering;
       'api::uploadphoto.uploadphoto': ApiUploadphotoUploadphoto;
     }
   }

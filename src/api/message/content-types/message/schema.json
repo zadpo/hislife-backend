@@ -26,6 +26,23 @@
     },
     "message": {
       "type": "text"
+    },
+    "number": {
+      "type": "biginteger"
+    },
+    "date_of_birth": {
+      "type": "date"
+    },
+    "profile_picture": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gender": {
+      "type": "string"
     }
   }
 }
