@@ -26,3 +26,4 @@ module.exports = {
         return { message: 'Form submitted successfully' };
     },
 };
+
