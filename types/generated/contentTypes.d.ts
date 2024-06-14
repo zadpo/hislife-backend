@@ -811,9 +811,10 @@ export interface ApiEventEvent extends Schema.CollectionType {
   attributes: {
     eventId: Attribute.String;
     name: Attribute.Text;
-    date: Attribute.Date;
+    date: Attribute.DateTime;
     description: Attribute.Text;
-    gender: Attribute.String;
+    time: Attribute.String;
+    location: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1101,6 +1102,39 @@ export interface ApiSummarySummary extends Schema.CollectionType {
   };
 }
 
+export interface ApiThreadThread extends Schema.CollectionType {
+  collectionName: 'threads';
+  info: {
+    singularName: 'thread';
+    pluralName: 'threads';
+    displayName: 'Thread';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    content: Attribute.Text;
+    author: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::thread.thread',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::thread.thread',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTitheTithe extends Schema.CollectionType {
   collectionName: 'tithes';
   info: {
@@ -1227,6 +1261,7 @@ declare module '@strapi/types' {
       'api::photogallery.photogallery': ApiPhotogalleryPhotogallery;
       'api::sign-up.sign-up': ApiSignUpSignUp;
       'api::summary.summary': ApiSummarySummary;
+      'api::thread.thread': ApiThreadThread;
       'api::tithe.tithe': ApiTitheTithe;
       'api::tithes-and-offering.tithes-and-offering': ApiTithesAndOfferingTithesAndOffering;
       'api::uploadphoto.uploadphoto': ApiUploadphotoUploadphoto;

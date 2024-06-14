@@ -19,12 +19,15 @@
       "type": "text"
     },
     "date": {
-      "type": "date"
+      "type": "datetime"
     },
     "description": {
       "type": "text"
     },
-    "gender": {
+    "time": {
+      "type": "string"
+    },
+    "location": {
       "type": "string"
     }
   }
