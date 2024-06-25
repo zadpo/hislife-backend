@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "worships",
+  "info": {
+    "singularName": "worship",
+    "pluralName": "worships",
+    "displayName": "worship",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "audio": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "audios"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}

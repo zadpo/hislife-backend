@@ -1117,6 +1117,8 @@ export interface ApiThreadThread extends Schema.CollectionType {
     title: Attribute.String;
     content: Attribute.Text;
     author: Attribute.String;
+    photo: Attribute.Media<'images', true>;
+    avatar: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1234,6 +1236,39 @@ export interface ApiUploadphotoUploadphoto extends Schema.CollectionType {
   };
 }
 
+export interface ApiWorshipWorship extends Schema.CollectionType {
+  collectionName: 'worships';
+  info: {
+    singularName: 'worship';
+    pluralName: 'worships';
+    displayName: 'worship';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    audio: Attribute.Media<'audios', true>;
+    title: Attribute.String;
+    date: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::worship.worship',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::worship.worship',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1265,6 +1300,7 @@ declare module '@strapi/types' {
       'api::tithe.tithe': ApiTitheTithe;
       'api::tithes-and-offering.tithes-and-offering': ApiTithesAndOfferingTithesAndOffering;
       'api::uploadphoto.uploadphoto': ApiUploadphotoUploadphoto;
+      'api::worship.worship': ApiWorshipWorship;
     }
   }
 }
